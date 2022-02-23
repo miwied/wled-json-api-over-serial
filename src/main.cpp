@@ -1,7 +1,7 @@
 /*
 This code is just for testing the json api over serial.
 Sending µC is a esp32 and recieving µC is a esp8266 with a custom compiled wled (WLED-0.13.0-b6) with a serial baudrate of 921600.
-This code did work a few days ago, but sometimes it had like a input lag. Now unfortuanetly it doesnt recieve any json command at all.
+This code did work a few days ago, but sometimes it had like a input lag. Now unfortunately the receive problem occurs much more frequently
 
 connections:
 esp32 pin 2(RX) <-> esp8266 pin 1(TX)
@@ -51,7 +51,7 @@ void sendRGB(int r, int g, int b)
 
 void setup() 
 {
-  Serial.begin(115200); //serial monitor (debug)
+  Serial.begin(115200); //serial monitor
   wledOut.begin(921600); //serial for wled
 
   pinMode(15, INPUT);
