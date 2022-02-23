@@ -27,7 +27,7 @@ void randomColor()
   seg_0_col_0.add(random(0, 254));
   seg_0_col_0.add(random(0, 254));
 
-  serializeJson(doc, Serial);
+  serializeJson(doc, Serial); //print json to Serial for debug 
   serializeJson(doc, wledOut);
   Serial.println("");
 }
@@ -43,7 +43,7 @@ void sendRGB(int r, int g, int b)
   seg_0_col_0.add(g);
   seg_0_col_0.add(b);
 
-  serializeJson(doc, Serial);
+  serializeJson(doc, Serial); //print json to Serial for debug 
   serializeJson(doc, wledOut);
   Serial.println("");
   delay(10);
@@ -63,9 +63,8 @@ void loop()
 {
   if(digitalRead(15)==LOW)
   {
-    randomColor();
-
     // sendRGB(random(0, 254), random(0, 254), random(0, 254));
+    randomColor();
     delay(250);
   }
 
