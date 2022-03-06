@@ -11,9 +11,8 @@ esp32 gnd <-> esp8266 gnd
 
 #include "Arduino.h"
 #include "ArduinoJson.h"
-#include "SoftwareSerial.h"
 
-SoftwareSerial wledOut(2, 4); //rx, tx
+HardwareSerial wledSerial(1);
 
 void randomColor() 
 {
@@ -30,10 +29,18 @@ void randomColor()
   // serializeJson(doc, Serial); //print json to Serial for debugging
   for(int i = 0; i<2; i++)
   {
-  serializeJson(doc, wledOut);
-  wledOut.println('\n');
+  serializeJson(doc, wledSerial);
+  wledSerial.println('\n');
   }
   // Serial.println("");
+}
+
+
+void jsonRequest()
+{
+  StaticJsonDocument<16> doc;
+  doc["v"] = true;
+  serializeJson(doc, wledSerial);
 }
 
 void sendRGB(int r, int g, int b) 
@@ -48,17 +55,19 @@ void sendRGB(int r, int g, int b)
   seg_0_col_0.add(b);
 
   // serializeJson(doc, Serial); //print json to Serial for debugging 
-  for(int i = 0; i<6; i++)
-  {
-  serializeJson(doc, wledOut);
-  wledOut.println('\n');
-  }
+  // for(int i = 0; i<6; i++)
+  // {
+  // // wledSerial.println('\n');
+  // }
+  serializeJson(doc, wledSerial);
 }
 
 void setup() 
 {
   Serial.begin(115200); //serial monitor
-  wledOut.begin(921600); //tested baudrates: 115200, 230400, 460800, 500000,  921600, 1000000, 1500000
+
+  wledSerial.begin(115200,SERIAL_8N1, 2, 4); //tested baudrates: 115200, 230400, 460800, 500000,  921600, 1000000, 1500000
+
 
   pinMode(15, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
@@ -67,14 +76,19 @@ void setup()
 
 void loop() 
 {
+
   if(digitalRead(15)==LOW)
   {
     sendRGB(random(0, 254), random(0, 254), random(0, 254));
-    // randomColor();
+    // jsonRequest();
+
     delay(250);
   }
 
-  // randomColor(); //should change the color once a second -> sometimes it dont! :(
-  // delay(1000);
+  if(wledSerial.available()>0)
+  {
+   Serial.write(wledSerial.read());
+  }
+
 }
 
