@@ -2,9 +2,9 @@
 This code is just for testing the wled json api over serial.
 Sending-µC is a esp32 and recieving-µC is a esp8266 with a custom compiled wled (WLED-0.13.0-b6) with a serial baudrate of 115200.
 
-connections:
-esp32 pin 2(RX) <-> esp8266 pin 1(TX)
-esp32 pin 4(TX) <-> esp8266 pin 3(RX)
+connections (using hardwareserial 1):
+esp32 pin RX2(RX) <-> esp8266 pin 1(TX)
+esp32 pin TX2(TX) <-> esp8266 pin 3(RX)
 esp32 gnd <-> esp8266 gnd
 */
 
