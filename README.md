@@ -8,7 +8,7 @@ This is a very simple example code of how to work with the wled json api over se
 - baud rate: 115200 
 - tested baudrates: 115200, 230400, 460800, 500000, 921600, 1000000, 1500000
 
-## Connections:
+#### Connections:
 - esp32 pin 2(RX) <-> esp8266 pin 1(TX)
 - esp32 pin 4(TX) <-> esp8266 pin 3(RX)
 - esp32 gnd <-> esp8266 gnd
