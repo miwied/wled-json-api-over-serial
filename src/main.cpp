@@ -8,8 +8,8 @@ esp32 pin 4(TX) <-> esp8266 pin 3(RX)
 esp32 gnd <-> esp8266 gnd
 */
 
-#include "Arduino.h"
-#include "ArduinoJson.h"
+#include <Arduino.h>
+#include <ArduinoJson.h>
 
 HardwareSerial wledSerial(1);
 
