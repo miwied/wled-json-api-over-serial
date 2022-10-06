@@ -1,6 +1,6 @@
 
 # wled-json-api-over-serial
-This is a very simple example code of how to work with the [WLED](https://github.com/Aircoookie/WLED) json api over serial using [PlatformIO](https://platformio.org/) and the [ArduinoJson library](https://github.com/bblanchon/ArduinoJson).
+This is a very simple [example code](https://github.com/miwied/wled-json-api-over-serial/blob/main/src/main.cpp) of how to work with the [WLED](https://github.com/Aircoookie/WLED) json api over serial using [PlatformIO](https://platformio.org/) and the [ArduinoJson library](https://github.com/bblanchon/ArduinoJson).
 
 With the help of the wled json api you are able to use all api commands to control a wled-flashed-mcu with any other serial capable microcontroller. 
 
