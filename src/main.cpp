@@ -1,4 +1,7 @@
 /*
+miwied - wled-json-api-over-serial - february 2022
+https://github.com/miwied/wled-json-api-over-serial
+
 This code is just for testing the wled json api over serial.
 Sending-µC is a esp32 and recieving-µC is a esp8266 with a custom compiled wled (WLED-0.13.0-b6) with a serial baudrate of 115200.
 
@@ -11,8 +14,14 @@ esp32 gnd <-> esp8266 gnd
 #include <Arduino.h>
 #include <ArduinoJson.h>
 
+/*
+Note:
+SoftwareSerial is only suitable for very slow baud rates.
+You should always use HardwareSerial if possible, and in case SoftwareSerial is indispensable, use the lowest possible rate.
+ */
 HardwareSerial wledSerial(1);
 
+// send a status request to the wled-mcu
 void jsonRequest()
 {
   StaticJsonDocument<16> doc;
@@ -20,6 +29,7 @@ void jsonRequest()
   serializeJson(doc, wledSerial);
 }
 
+// build a json object which includes the colors (rgb) and send it
 void sendRGB(int r, int g, int b) 
 {
   StaticJsonDocument<192> doc;
@@ -31,7 +41,7 @@ void sendRGB(int r, int g, int b)
   seg_0_col_0.add(g);
   seg_0_col_0.add(b);
 
-  serializeJson(doc, wledSerial);
+  serializeJson(doc, wledSerial); // send the json object with the wledSerial as output
 }
 
 void setup() 
