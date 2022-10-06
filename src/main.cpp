@@ -73,4 +73,3 @@ void loop()
    Serial.write(wledSerial.read());
   }
 }
-
